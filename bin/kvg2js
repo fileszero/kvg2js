@@ -54,7 +54,7 @@ function parse(filename) {
 				throw err;
 			}
 
-			var jsData = "{\"" + filename.replace(/.svg$/, "") + "\":" + JSON.stringify(extract(result.svg)) + "}";
+			var jsData = '{"id":"' + filename.replace(/.svg$/, "") + '", "sen":' + JSON.stringify(extract(result.svg)) + '}';
 
 			fs.writeFile(distAbsolutePath + path.sep + filename.replace(/svg$/, "json"), jsData, function (err) {
 				if (err) {
