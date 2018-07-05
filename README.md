@@ -20,6 +20,17 @@ Where DIRECTORY is the path to the directory holding all the SVG files. This wil
 
 To come soon; to either convert in JS or JSON, in single or separated files, etc.
 
+## without install
+
+`git clone git@github.com:fileszero/kvg2js.git`
+
+`cd kvg2js`
+
+`npm install`
+
+`node bin\kvg2js [DIRECTORY]`
+
+
 ### License
 
 `kvg2js` was created by [Matthieu Bilbille](http://github.com/mbilbille) and released under the [MIT License](http://github.com/mbilbille/kvg2js/blob/master/LICENSE).
