@@ -82,17 +82,18 @@ function extract(svg) {
 
 		if (typeof node.g !== "undefined") {
 			for (i = 0; i < node.g.length; i++) {
-				groups.push(node.g[i].$.id);
+				// groups.push(node.g[i].$.id);
 				__extract(node.g[i]);
-				groups.splice(groups.indexOf(node.g[i].$.id), 1);
+				// groups.splice(groups.indexOf(node.g[i].$.id), 1);
 			}
 		}
 
 		if (typeof node.path !== "undefined") {
 			for (i = 0; i < node.path.length; i++) {
 				data.push({
+					"order": parseInt(node.path[i].$.id.match(/\d*$/)),
 					"path": node.path[i].$.d,
-					"groups": groups.slice(0)
+					// "groups": groups.slice(0)
 				});
 			}
 		}
@@ -100,13 +101,15 @@ function extract(svg) {
 
 	// Dive recursively into the SVG node, to get paths and groups data.
 	__extract(svg.g[0].g[0]);
-
+	data.sort(function (a, b) {
+		return a.order - b.order;
+	});
 	// Order marks are handle separately
 	for (var i = 0; i < svg.g[1].text.length; i++) {
 		data[i].text = {
 			"value": svg.g[1].text[i]._,
-			"x": svg.g[1].text[i].$.transform.split(" ")[4],
-			"y": svg.g[1].text[i].$.transform.split(" ")[5].replace(")", "")
+			"x": parseFloat(svg.g[1].text[i].$.transform.split(" ")[4]),
+			"y": parseFloat(svg.g[1].text[i].$.transform.split(" ")[5].replace(")", ""))
 		};
 	}
 
