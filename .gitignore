@@ -1,7 +1,10 @@
 node_modules
 package-lock.json
 /kanji/*
+<<<<<<< HEAD
 
 !/kanji/json/
+=======
+>>>>>>> json
 
 /.vscode/
